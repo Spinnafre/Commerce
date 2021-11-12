@@ -1,0 +1,48 @@
+.products{
+    background-color: rgb(163, 95, 11);
+    width: 100vw;
+    height: 100vh;
+    padding: 20px 10px;
+}
+
+.productList{
+    width: 90vw;
+    height: 100vh;
+    margin: 0px auto;
+}
+
+.productWrapper{
+    background-color: bisque;
+    width: 20vw;
+    height: auto;
+    padding: 20px 10px;
+
+    text-align: center;
+    border-radius: 10px;
+}
+
+.productWrapper img{
+    border-radius: 5px;
+}
+
+.productCategories{
+    margin-top: 5px;
+}
+
+.productCategories span{
+    margin: 0 3px;
+    background-color: coral;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.productWrapper p{
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.productWrapper>span{
+    font-size: 40px;
+    font-weight: bold;
+
+}
