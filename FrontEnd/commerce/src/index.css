@@ -3,6 +3,7 @@ body {
   font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(163, 95, 11);
 }
 
 code {

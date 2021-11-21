@@ -10,7 +10,7 @@ export default function ProductSingle({URL, Categorie1, Categorie2, Name, Price}
                 <span>{Categorie2}</span>
             </div>
             <p>{Name}</p>
-            <span>R$ {Price}</span>
+            <span>R${Price}</span>
         </div>
     )
 }  
