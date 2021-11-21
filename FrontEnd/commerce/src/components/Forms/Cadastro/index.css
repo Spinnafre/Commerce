@@ -1,0 +1,28 @@
+button{
+  background: rgb(163, 95, 11);
+  padding: 8px 20px;
+  color: #fff;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+button:hover, .login-form-a:hover {
+  background: #fff;
+  border: 1px solid  rgb(163, 95, 11);
+  color: rgb(163, 95, 11);
+  transition: background 0.3s;
+}
+
+button svg {
+  margin-right: 10px;
+  text-align: center;
+}
+.ant-row-end{
+  display: flex !important;
+  margin-top: 10px !important;
+  align-items: center;
+}
+.ant-col{
+  padding: 5px !important;
+}
+
