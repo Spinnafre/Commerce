@@ -1,0 +1,120 @@
+html{
+  background-color: rgb(163, 95, 11);
+}
+button{
+  background: rgb(163, 95, 11);
+  padding: 8px 20px;
+  color: #fff;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+button:hover, .login-form-a:hover {
+  background: #fff;
+  border: 1px solid  rgb(163, 95, 11);
+  color: rgb(163, 95, 11);
+  transition: background 0.3s;
+}
+
+button svg {
+  margin-right: 10px;
+  text-align: center;
+}
+input{
+    margin-bottom: 10px;
+}
+.template-container .sign-in,
+.sign-in-buttons,
+.sign-in-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.template-container {
+  flex-direction: row !important;
+  
+}
+
+.sign-in {
+  margin: 5px;
+  width: 31%;
+  min-height: 400px;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  text-align: center;
+}
+
+.sign-in-buttons {
+  width: 82%;
+  height: 80px;
+}
+
+.sign-in-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 40px;
+  width: 40px;
+
+  border-radius: 20px;
+
+  background-color: aqua;
+}
+
+.login-form-button{
+  width: 100%;
+}
+.login-input{
+  margin: 10px;
+}
+.template-page-example-container .cegov-container-header {
+  z-index: 1;
+}
+
+@media(max-width: 812px) {
+  .image-home-signin {
+      display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .sign-in {
+      width: 346px;
+      padding: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sign-in {
+      width: 100%;
+      max-width: 300px;
+      padding: 5px;
+  }
+}
+
+@media(max-width: 425px) {
+  .image-home-signin {
+      display: none;
+  }
+}
+
+@media(max-width: 360px) {
+
+  div.sign-in-buttons>button:nth-child(1)>span,
+  div.sign-in-buttons>button:nth-child(2)>span {
+      font-size: small;
+  }
+}
+
+@media (max-width: 1115px) {
+.button {
+  display: block;
+  width: 140px;
+  margin-inline: auto;
+  margin-top: 15px;
+}
+}
