@@ -1,12 +1,10 @@
-import Products from './components/Products';
 import './App.css';
-import Cart from './components/Cart';
+import Index from './pages/index/Index';
 
 function App() {
   return (
     <div className="container">
-      <Cart />
-      <Products />
+      <Index />
     </div>
   );
 }
