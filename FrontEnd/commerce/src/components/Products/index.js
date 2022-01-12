@@ -1,10 +1,14 @@
 import styles from './styles.module.css'
 import ProductSingle from '../ProductSingle'
 import { useState, useEffect } from 'react'
+import AddProduct from '../AddProduct'
 
 //PS - URL, Categories, Name, Price
 
 export default function Products() {
+
+    const [products, setProducts] = useState([])
+
     const props = {
         URL: "https://picsum.photos/100",
         Categorie1: "Category1",
@@ -13,11 +17,27 @@ export default function Products() {
         Price: "Price"
     }
 
+    const GetProducts = async () => {
+      const List = await fetch('http://localhost:3333/product', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then((res) => res.json())
+      console.log(List)
+
+      setProducts(List);
+    }
+
+    useEffect(() => {
+        GetProducts();
+    }, [])
+
     const [category1, setCategory1] = useState("1")
     const [category2, setCategory2] = useState("1")
 
     const sendData = () => {
-
+        //fazer busca por categorias
     }
     
     return(
@@ -52,6 +72,14 @@ export default function Products() {
 
         <div className={styles.products}>
             <div className={styles.productList}>
+                {
+                    products ? products.map(element => {
+                        console.log(element)
+                        return(
+                            <ProductSingle {...element}/>
+                        )
+                    }) : "Não há itens para mostrar, melhor contactar a administração!"
+                }
                 <ProductSingle {...props}/>
                 <ProductSingle {...props}/>
                 <ProductSingle {...props}/>
@@ -66,6 +94,8 @@ export default function Products() {
                 <ProductSingle {...props}/>
             </div>
         </div>
+
+        <AddProduct />
         </>
     )
 }

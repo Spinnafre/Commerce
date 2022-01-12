@@ -85,7 +85,7 @@ export default function Cart() {
 			if(itemValueArray[0] == Name){
 				let nomeCookie = cookieArray[i].slice(0, ondeCortar);
 				document.cookie = `${itemValueArray[0]}=` + itemValueArray[0] +','+ itemValueArray[1] + ',' + 0 + `; expires=Thu, 01 Jan 1970 00:00:00 UTC; path="/"`;
-				console.log(document.cookie)
+				//console.log(document.cookie)
 			}
 		}
 		setCart(cart);

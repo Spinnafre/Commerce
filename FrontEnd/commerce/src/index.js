@@ -3,10 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from './pages/Login/index'
+import Cadastro from './pages/SignUp/index'
+import Index from './pages/index/Index'
+import AddProduct from './components/AddProduct/index'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App />}>
+          <Route index element={<Index />} />
+          <Route path='login' element={<Login />}/>
+          <Route path='cadastro' element={<Cadastro />}/>
+          <Route path='admin' element={<AddProduct />}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
