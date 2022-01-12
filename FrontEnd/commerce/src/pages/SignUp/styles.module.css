@@ -1,0 +1,33 @@
+.SignUpPage h2{
+    text-align: center;
+    color: wheat;
+}
+
+.SignUpPage .FormCard{
+    background: bisque;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 0 auto;
+    width: 20rem;
+    text-align: center;
+}
+
+.FormCard .FormCardHeader{
+    font-weight: bold;
+}
+
+.FormCard .FormCardField{
+    display: block;
+    margin: 5px auto;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.FormCard .FormCardFooter{
+    margin-top: 10px;
+}
+
+.Link{
+    text-decoration: none;
+    font-weight: bold;
+}

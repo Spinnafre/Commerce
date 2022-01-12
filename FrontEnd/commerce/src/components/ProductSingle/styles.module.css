@@ -33,5 +33,19 @@
 .productWrapper>span{
     font-size: 40px;
     font-weight: bold;
+}
 
+.productWrapper button{
+    cursor: pointer;
+    background-color: firebrick;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.productWrapper button:hover{
+    background-color: crimson;
 }

@@ -1,0 +1,48 @@
+.CreateCategoryButton{
+  background: green;
+  color: white;
+  font-weight: bold;
+}
+
+.Modal{
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.ModalShow{
+  display: block;
+}
+
+.ModalHide{
+  display: none;
+}
+
+.ModalPopUp{
+  background: bisque;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 0 auto;
+  width: 20rem;
+  text-align: center;
+  position: fixed;
+  top: 20%;
+  left: 30%;
+}
+
+.ModalHeader{
+  display: flex;
+}
+
+.ModalCloseButton{
+  background: crimson;
+  color: white;
+  font-weight: bold;
+}
+
+.FormCardField{
+  display: block;
+  margin: 5px auto;
+  padding: 10px;
+  border-radius: 4px;
+}
