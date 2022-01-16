@@ -6,11 +6,8 @@ Projeto desenvolvido visando aplicar conceitos de banco de dados com Node.
 
 </h3>
 
-<h1 align="center">
-  <img  src="https://github.com/Spinnafre/myCommerce/blob/main/showcase/game.gif" alt="gif do app" width=60% height=60%>
-</h1>
 
-Video explicando o projeto: https://www.youtube.com/watch?v=No81WSipttU
+Video explicando o projeto: 
 
 ## **:computer: TECNOLOGIAS**
 
@@ -74,24 +71,6 @@ $ npm run migration:run
 ```
 Para abrir a documentação da aplicação e conseguir interagir com as rotas é só acessar o endereço http://localhost:3333/api-docs/ com a aplicação rodando na máquina local.
 
-## **:star2: COLABORADOR**
-
-<div align=center>
-
-<table style="width:100%">
-  <tr align=center>
-    <th><strong>Davi Silva</strong></th>
-  </tr>
-  <tr align=center>
-    <td>
-      <a href="https://github.com/Spinnafre" target="_blank">
-        <img width="200" src="https://avatars2.githubusercontent.com/u/61525268?s=460&u=b66a852f0a5808ec463be41555fe28c2ff6d3e1a&v=4">
-      </a>
-    </td>
-  </tr>
-</table>
-
-</div>
 
 
 

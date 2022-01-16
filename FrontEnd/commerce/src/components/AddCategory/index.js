@@ -8,16 +8,18 @@ export default function AddCategoria() {
 	const [name, setName] = useState("");
   const [showModal, setShowModal] = useState(false)
     
-  const ShowModal = () => {
+  const ShowModal = (e) => {
+    e.preventDefault();
     setShowModal(true);
   }
 
   const CloseModal = e => {
+    e.preventDefault();
     setShowModal(false)
   }
 
   const SendData = async e => {
-    e.preventDefault();
+    e.PreventDefault();
 
     if(name !== ""){
       const result = await fetch('http://localhost:3333/category', {
@@ -43,17 +45,17 @@ export default function AddCategoria() {
 
 	return (
 		<>
-			<button className={styles.CreateCategoryButton} onClick={() => ShowModal()}>Criar Categoria</button>
+			<button className={styles.CreateCategoryButton} onClick={(e) => ShowModal(e)}>Criar Categoria</button>
 
 			<div className={`styles.Modal ${showModal ? styles.ModalShow : styles.ModalHide}`}>
 				<div className={styles.ModalPopUp}>
 					<form>
             <div className={styles.ModalHeader}>
-              <p>Criar Categoria</p>
+              <h4>Criar Categoria</h4>
 						  <span className={styles.ModalCloseButton} onClick={(e)=> CloseModal(e)}>X</span>
             </div>
 
-						<input className={styles.FormCardField} onChange={e => setName(e.target.value)} type="text" name="name" placeholder='Nome do produto'/>
+						<input className={styles.FormCardField} onChange={e => setName(e.target.value)} type="text" name="name" placeholder='Nome'/>
 
 						<input className={styles.FormCardField} onSubmit={e => SendData(e)} type="submit" value="Adicionar Categoria"/>
 					</form>

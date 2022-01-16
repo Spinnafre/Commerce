@@ -12,7 +12,9 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(true);
 
   const getData = () => {
-    setToken(sessionStorage.getItem('token'));
+    let token = sessionStorage.getItem('token')
+    console.log(token)
+    setToken(token);
     setIsAdmin(sessionStorage.getItem('isAdmin'));
   }
 
@@ -44,9 +46,17 @@ function App() {
           cursor: 'pointer'
         }} to="/">Produtos</Link> |{" "}
 
+            <Link style={{
+              textDecoration: "none",
+              color: 'white',
+              cursor: 'pointer'
+            }} to="/userinfo">Perfil</Link> |{" "}
+
         {
           token ? 
           <>
+            
+
             <p style={{
               textDecoration: "none",
               color: 'white',
@@ -65,7 +75,7 @@ function App() {
               textDecoration: "none",
               color: 'white',
               cursor: 'pointer'
-            }} to="/cadastro">Cadastre-se</Link>
+            }} to="/cadastro">Cadastre-se</Link> |{" "}
           </>
         }
 

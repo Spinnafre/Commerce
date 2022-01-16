@@ -12,7 +12,8 @@ export default function AddProduct() {
     name: '',
     price: '',
     qtd: '',
-    category_id: ''
+    category1_id: '',
+    category2_id: ''
   });
 
 	const handleOnChange = event => {
@@ -52,42 +53,75 @@ export default function AddProduct() {
     }
   }
 
+	const [showModal, setShowModal] = useState(false)
+    
+  const ShowModal = (e) => {
+		e.preventDefault();
+    setShowModal(true);
+		console.log(showModal)
+  }
+
+  const CloseModal = e => {
+    setShowModal(false)
+		console.log(showModal)
+  }
+
 	useEffect(() => {
 		getCategories();
 	}, [])
 
 	return (
 	<>
-		<button className={styles.AddProductButton}>Adicionar produto</button>
+		<button className={styles.AddProductButton} onClick={(e) => ShowModal(e)}>Adicionar produto</button>
 
-		<div className={styles.Modal}>
+		<div className={`styles.Modal ${showModal ? styles.ModalShow : styles.ModalHide}`}></div>
+		<div className={`styles.Modal ${showModal ? styles.ModalShow : styles.ModalHide}`}>
 			<div className={styles.ModalPopUp}>
 				<form>
-					<span className={styles.ModalCloseButton}>X</span>
+					<div className={styles.ModalHeader}>
+            <h4>Criar Produto</h4>
+						<span className={styles.ModalCloseButton} onClick={(e)=> CloseModal(e)}>X</span>
+          </div>
 
 					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.name} type="text" name="name" placeholder='Nome do produto' />
 
 					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.price} type="text" name="price" placeholder='Preço do produto' />
 
-					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.qtd} type="number" name="qtf" placeholder='Quant do produto' />
+					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.qtd} type="number" name="qtd" placeholder='Quant do produto' />
 
 					<div className={styles.QuantField}>
-						<label>Categoria</label>
-						<select onChange={handleOnChange}>
-							{
-								categories.length ? categories.map(elem => {
-									<option value={elem.id}>{elem.name}</option>
-								}) : "Placeholder"
-							}
-							<option value="Esportes">Esportes</option>
-							<option value="Politica">Política</option>
-							<option value="Entretenimento">Entretenimento</option>
-							<option value="Famosos">Famosos</option>
-						</select>
-						<button className={styles.AddCategory} onSubmit={e => SendData(e)}>Criar Categoria</button>
+						<div>
+							<select onChange={handleOnChange} name="category1_id">
+								<option value="" disabled selected>Categoria</option>
+								{
+									categories.length ? categories.map(elem => {
+										<option value={elem.id}>{elem.name}</option>
+									}) : "Placeholder"
+								}
+								<option value="Esportes">Esportes</option>
+								<option value="Politica">Política</option>
+								<option value="Entretenimento">Entretenimento</option>
+								<option value="Famosos">Famosos</option>
+							</select>
+
+							<select onChange={handleOnChange} name="category2_id">
+								<option value="" disabled selected>Categoria</option>
+								{
+									categories.length ? categories.map(elem => {
+										<option value={elem.id}>{elem.name}</option>
+									}) : "Placeholder"
+								}
+								<option value="Esportes">Esportes</option>
+								<option value="Politica">Política</option>
+								<option value="Entretenimento">Entretenimento</option>
+								<option value="Famosos">Famosos</option>
+							</select>
+						</div>
+						
+						<AddCategoria />
 					</div>
 
-					<AddCategoria />
+					<button className={styles.FormCardField} onSubmit={e => SendData(e)}>Criar produto</button>
 				</form>
 			</div>
 		</div>

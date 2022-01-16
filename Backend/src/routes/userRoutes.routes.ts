@@ -11,7 +11,6 @@ import { userIsAdmin } from "../middlewares/ensureAdmin";
 const userRouter=Router()
 
 
-
 userRouter.post('/user',(req, res) => {
     return CreateUserController().handle(req, res)
 })

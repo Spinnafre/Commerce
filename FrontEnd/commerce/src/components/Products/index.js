@@ -74,6 +74,13 @@ export default function Products() {
             <div className={styles.productList}>
                 {
                     products ? products.map(element => {
+                        element = {
+                            URL: element.products.url,
+                            Categorie1: element.categories[0],
+                            Categorie2: element.categories[1],
+                            Name: element.products.name,
+                            Price: element.products.price
+                        }
                         console.log(element)
                         return(
                             <ProductSingle {...element}/>
@@ -94,8 +101,6 @@ export default function Products() {
                 <ProductSingle {...props}/>
             </div>
         </div>
-
-        <AddProduct />
         </>
     )
 }

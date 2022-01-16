@@ -2,6 +2,10 @@
   background: green;
   color: white;
   font-weight: bold;
+  padding: 6px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .Modal{
@@ -19,25 +23,43 @@
 }
 
 .ModalPopUp{
-  background: bisque;
+  background: rgb(105, 105, 105);
   border-radius: 20px;
   padding: 30px;
   margin: 0 auto;
-  width: 20rem;
+  width: 280px;
   text-align: center;
   position: fixed;
-  top: 20%;
-  left: 30%;
+  top: 26%;
+  left: 41.5%;
 }
 
-.ModalHeader{
-  display: flex;
+.ModalPopUp>form{
+  display: block !important;
 }
 
 .ModalCloseButton{
   background: crimson;
   color: white;
   font-weight: bold;
+  cursor: pointer;
+  padding: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.FormCardField{
+  display: block;
+  margin: 5px auto;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ModalHeader{
+  display: flex;
+  justify-content: space-between;
 }
 
 .FormCardField{

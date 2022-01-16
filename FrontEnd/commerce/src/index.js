@@ -8,7 +8,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/Login/index'
 import Cadastro from './pages/SignUp/index'
 import Index from './pages/index/Index'
-import AddProduct from './components/AddProduct/index'
+import AdminPage from './pages/AdminPage/index'
+import UserInfo from './pages/UserPage/index'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +19,9 @@ ReactDOM.render(
           <Route index element={<Index />} />
           <Route path='login' element={<Login />}/>
           <Route path='cadastro' element={<Cadastro />}/>
-          <Route path='admin' element={<AddProduct />}/>
+          {/* Verificar se é adm e mostrar a AdminPage */}
+          <Route path='admin' element={<AdminPage />}/>
+          <Route path='userinfo' element={<UserInfo />}/>
         </Route>
       </Routes>
     </BrowserRouter>
