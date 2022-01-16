@@ -25,30 +25,37 @@ export default function UserPage() {
   console.log(Object.keys(UserData))
   console.log(Object.values(UserData))
 
-  // const getUserData = async () => {
-	// 	const result = await fetch(`http://localhost:3333/user/${id}`, {
-	// 		method: 'GET',
-	// 		headers: {
-	// 			'Content-Type': 'application/json'
-	// 		}
-	// 	}).then((res) => res.json())
+  const getUserData = async () => {
+    const UserId = sessionStorage.getItem('id')
+    const UserToken = sessionStorage.getItem('token')
 
-	// 	if (result) {
-	// 		//sucesso
-	// 		setUserData(result)
-  //     UserKeys = Object.keys(result)
-  //     UserValues = Object.values(result)
-	// 	} else {
-	// 		alert("Ocorreu um erro ao tentar pegar os dados!")
-	// 	}
-	// }
+		const result = await fetch(`http://localhost:3333/user/${UserId}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+        "Authorization": `Bearer ${UserToken}`
+			}
+		}).then((res) => res.json())
+
+		if (result) {
+			//sucesso
+      console.log(result)
+			setUserData(result)
+		} else {
+			alert("Ocorreu um erro ao tentar pegar os dados!")
+		}
+	}
 
   useEffect(() => {
-    //getUserData();
-    setUserData(UserData)
+    getUserData();
   }, [])
 	
-
+  useEffect(() => {
+    if(userData){
+      UserKeys = Object.keys(userData)
+      UserValues = Object.values(userData)
+    }
+  }, [userData])
 
 	return (
 		<div className={styles.UserPage}>

@@ -18,8 +18,10 @@ function App() {
     setIsAdmin(sessionStorage.getItem('isAdmin'));
   }
 
-  const DeleteToken = () => {
+  const DeleteUserData = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('isAdmin');
     setToken("");
     navigate("/", {replace: true})
   }
@@ -46,22 +48,20 @@ function App() {
           cursor: 'pointer'
         }} to="/">Produtos</Link> |{" "}
 
+        {
+          token ? 
+          <>
             <Link style={{
               textDecoration: "none",
               color: 'white',
               cursor: 'pointer'
             }} to="/userinfo">Perfil</Link> |{" "}
 
-        {
-          token ? 
-          <>
-            
-
             <p style={{
               textDecoration: "none",
               color: 'white',
               cursor: 'pointer'
-            }} onClick={() => DeleteToken()}>Logout</p> |{" "}
+            }} onClick={() => DeleteUserData()}>Logout</p> |{" "}
           </>
           : 
           <>
