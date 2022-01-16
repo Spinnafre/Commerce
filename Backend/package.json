@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "seed:admin": "ts-node-dev --transpile-only src/database/seeds/index.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "migration:run": "ts-node-dev --inspect --transpile-only node_modules/typeorm/cli.js migration:run"
   },
@@ -50,13 +51,15 @@
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.21",
     "@types/jsonwebtoken": "^8.5.1",
+    "@types/node": "^17.0.8",
     "@types/supertest": "^2.0.10",
     "@types/swagger-ui-express": "^4.1.2",
     "@types/uuid": "^8.3.0",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.4",
-    "ts-node-dev": "^1.1.6",
+    "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.2.2"
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
   }
 }

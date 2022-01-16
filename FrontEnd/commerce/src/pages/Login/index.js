@@ -42,8 +42,11 @@ export default function Login() {
         //salvando o token
         sessionStorage.setItem('token', result.data);
 
-        //guardando se usuário é admin
+        //guardando se usuário é admin result.isAdmin
         sessionStorage.setItem('isAdmin', isAdmin);
+
+        //guardando o id
+        sessionStorage.setItem('id', result.id)
         
         alert('Usuário logado!');
 

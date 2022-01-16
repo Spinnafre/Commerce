@@ -12,12 +12,16 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(true);
 
   const getData = () => {
-    setToken(sessionStorage.getItem('token'));
+    let token = sessionStorage.getItem('token')
+    console.log(token)
+    setToken(token);
     setIsAdmin(sessionStorage.getItem('isAdmin'));
   }
 
-  const DeleteToken = () => {
+  const DeleteUserData = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('isAdmin');
     setToken("");
     navigate("/", {replace: true})
   }
@@ -47,11 +51,17 @@ function App() {
         {
           token ? 
           <>
+            <Link style={{
+              textDecoration: "none",
+              color: 'white',
+              cursor: 'pointer'
+            }} to="/userinfo">Perfil</Link> |{" "}
+
             <p style={{
               textDecoration: "none",
               color: 'white',
               cursor: 'pointer'
-            }} onClick={() => DeleteToken()}>Logout</p> |{" "}
+            }} onClick={() => DeleteUserData()}>Logout</p> |{" "}
           </>
           : 
           <>
@@ -65,7 +75,7 @@ function App() {
               textDecoration: "none",
               color: 'white',
               cursor: 'pointer'
-            }} to="/cadastro">Cadastre-se</Link>
+            }} to="/cadastro">Cadastre-se</Link> |{" "}
           </>
         }
 

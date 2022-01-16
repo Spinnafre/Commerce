@@ -400,7 +400,7 @@
                   "name": {
                     "type": "string"
                   },
-                  "username": {
+                  "login": {
                     "type": "string"
                   },
                   "address": {
@@ -418,7 +418,7 @@
                 },
                 "example": {
                   "name": "Mr X",
-                  "username": "MRX",
+                  "login": "MRX",
                   "address": "Rua 8, nº 40",
                   "email": "mrx@gmail.com",
                   "password": "123",
@@ -521,7 +521,7 @@
                       "name": {
                         "type": "string"
                       },
-                      "username": {
+                      "login": {
                         "type": "string"
                       },
                       "address": {
@@ -591,7 +591,7 @@
                   "name": {
                     "type": "string"
                   },
-                  "username": {
+                  "login": {
                     "type": "string"
                   },
                   "address": {
@@ -612,7 +612,7 @@
                 },
                 "example": {
                   "name": "Mr X",
-                  "username": "MRX",
+                  "login": "MRX",
                   "address": "Rua 8, nº 40",
                   "email": "mrx@gmail.com",
                   "password": "123",
@@ -750,7 +750,7 @@
                       "name": {
                         "type": "string"
                       },
-                      "username": {
+                      "login": {
                         "type": "string"
                       },
                       "address": {
@@ -773,7 +773,7 @@
                   "example": {
                     "id": "b3395b98-b2b4-4014-89fd-430019353dec",
                     "name": "Davi Silva da Penha",
-                    "username": "Spin",
+                    "login": "Spin",
                     "address": "Rua 8, nº 40",
                     "email": "mrspinnafre@gmai.com",
                     "password": "$2b$08$Uq7ZLpQYFe0Vo5Lxi8t9MeR.PltFW0.9wg7L2OT1X7Z7qJKQXP5EK",

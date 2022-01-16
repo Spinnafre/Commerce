@@ -1,0 +1,32 @@
+.UserPage{
+  background-color: blanchedalmond;
+  height: 100vh;
+  padding-top: 10px;
+}
+
+.UserPage h4{
+  font-size: 26px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.TableContainer{
+  background-color: rgb(255, 218, 154);
+  margin: 50px 0;
+}
+
+.TableContainer {
+  width: 700px;
+  margin: 0 auto;
+  padding: 60px;
+  border-radius: 20px;
+}
+
+.TableBody td, th{
+  padding: 10px 15px;
+}
+
+.LeftColumn{
+  padding-right: 20px;
+  font-weight: bold;
+}

@@ -1,0 +1,15 @@
+.Products{
+  background-color: rgb(163, 95, 11);
+  height: 100vh;
+  width: 98%;
+  margin: 0 10%;
+  padding: 20px 10px;
+}
+
+.ProductList{
+  height: 100vh;
+  margin: 0px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
