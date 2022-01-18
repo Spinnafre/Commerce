@@ -4,23 +4,24 @@ import AddCategoria from '../AddCategory';
 
 //PS - URL, Categories, Name, Price
 
-export default function AddProduct() {
-
-	const [categories, setCategories] = useState([]);
-
+export default function AddProduct({GetNewProductList}) {
+	
 	const [inputValues, setInputValues] = useState({
-    name: '',
+		productName: '',
+		imgUrl: '',
     price: '',
-    qtd: '',
-    category1_id: '',
-    category2_id: ''
+    qtd: ''
   });
-
+	
+	const [category1, setCategory1] = useState("")
+	
 	const handleOnChange = event => {
-    const { name, value } = event.target;
+		const { name, value } = event.target;
     setInputValues({ ...inputValues, [name]: value });
   };
-
+	
+	// REQUISITANDO CATEGORIAs
+	const [categories, setCategories] = useState([]);
 	const getCategories = async () => {
 		const result = await fetch('http://localhost:3333/category', {
 			method: 'GET',
@@ -37,33 +38,66 @@ export default function AddProduct() {
 		}
 	}
 
+	// CRIANDO PRODUTO
 	const SendData = async e => {
     e.preventDefault();
     let empty = false;
-    for(let i in inputValues){
-      if(inputValues[i] === ""){
-        empty = true;
-      }
-    }
+		if(inputValues.productName == "" || inputValues.price == "" || inputValues.qtd == "" || category1 == "" ){
+			empty = true;
+		}
+    
+		if(empty == false){
+			const UserToken = sessionStorage.getItem('token')
+			const result = await fetch('http://localhost:3333/product', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					"Authorization": `Bearer ${UserToken}`
+				},
+				body: JSON.stringify({
+					name: inputValues.productName,
+					price: inputValues.price,
+					img_url: inputValues.imgUrl,
+					qtd: inputValues.qtd,
+					category_id:[
+						category1
+					]
+				})
+			}).then((res) => res.json())
+			
+			if(result.msg == "Product created sucessfully"){
+				alert("Produto criado com sucesso!")
 
-    if(empty === false){
-      console.log(inputValues)
-    } else {
-        alert("Ocorreu um erro!")
-    }
+				GetNewProductList({
+					name: inputValues.productName,
+					price: inputValues.price,
+					img_url: inputValues.imgUrl,
+					qtd: inputValues.qtd,
+					category_id:[
+						category1
+					]
+				})
+
+				setShowModal(false)
+			} else {
+				alert("Ocorreu um erro ao tentar criar produto!" + result.msg)
+			}
+		}else{
+			alert("Preencha todos os campos")
+		}
   }
 
-	const [showModal, setShowModal] = useState(false)
-    
+// MODAL
+	const [showModal, setShowModal] = useState(false)  
   const ShowModal = (e) => {
 		e.preventDefault();
     setShowModal(true);
-		console.log(showModal)
+		getCategories();
   }
 
   const CloseModal = e => {
     setShowModal(false)
-		console.log(showModal)
+		e.preventDefault();
   }
 
 	useEffect(() => {
@@ -83,45 +117,28 @@ export default function AddProduct() {
 						<span className={styles.ModalCloseButton} onClick={(e)=> CloseModal(e)}>X</span>
           </div>
 
-					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.name} type="text" name="name" placeholder='Nome do produto' />
+					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.productName} type="text" name="productName" placeholder='Nome do produto' />
+
+					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.imgUrl} type="text" name="imgUrl" placeholder='Link da imagem' />
 
 					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.price} type="text" name="price" placeholder='Preço do produto' />
 
-					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.qtd} type="number" name="qtd" placeholder='Quant do produto' />
+					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.qtd} min={0} type="number" name="qtd" placeholder='Quant do produto' />
 
 					<div className={styles.QuantField}>
-						<div>
-							<select onChange={handleOnChange} name="category1_id">
-								<option value="" disabled selected>Categoria</option>
+							<select onChange={e => console.log(e.target.value)} name="category1">
+								<option unselectable='on' value={""}>Categoria</option>
 								{
-									categories.length ? categories.map(elem => {
-										<option value={elem.id}>{elem.name}</option>
-									}) : "Placeholder"
+									categories.length ? categories.map(elem => (
+										<option value={elem.id} key={elem.id}>{elem.name}</option>
+									)) : "Placeholder"
 								}
-								<option value="Esportes">Esportes</option>
-								<option value="Politica">Política</option>
-								<option value="Entretenimento">Entretenimento</option>
-								<option value="Famosos">Famosos</option>
 							</select>
-
-							<select onChange={handleOnChange} name="category2_id">
-								<option value="" disabled selected>Categoria</option>
-								{
-									categories.length ? categories.map(elem => {
-										<option value={elem.id}>{elem.name}</option>
-									}) : "Placeholder"
-								}
-								<option value="Esportes">Esportes</option>
-								<option value="Politica">Política</option>
-								<option value="Entretenimento">Entretenimento</option>
-								<option value="Famosos">Famosos</option>
-							</select>
-						</div>
 						
 						<AddCategoria />
 					</div>
 
-					<button className={styles.FormCardField} onSubmit={e => SendData(e)}>Criar produto</button>
+					<button className={styles.FormCardField} onClick={e => SendData(e)}>Criar produto</button>
 				</form>
 			</div>
 		</div>

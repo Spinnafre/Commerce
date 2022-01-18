@@ -1,8 +1,6 @@
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 
-//PS - URL, Categories, Name, Price
-
 export default function AddCategoria() {
 
 	const [name, setName] = useState("");
@@ -19,13 +17,15 @@ export default function AddCategoria() {
   }
 
   const SendData = async e => {
-    e.PreventDefault();
+    e.preventDefault();
 
     if(name !== ""){
+    const UserToken = sessionStorage.getItem('token')
       const result = await fetch('http://localhost:3333/category', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${UserToken}`
         },
         body: JSON.stringify({
           name: name
@@ -35,6 +35,7 @@ export default function AddCategoria() {
       if (result.msg == "Category created successfully") {
         //sucesso
         alert("Categoria criada com sucesso")
+        setShowModal(false)
       } else {
         alert("Ocorreu um erro!")
       }
@@ -49,16 +50,16 @@ export default function AddCategoria() {
 
 			<div className={`styles.Modal ${showModal ? styles.ModalShow : styles.ModalHide}`}>
 				<div className={styles.ModalPopUp}>
-					<form>
+					<div action='#'>
             <div className={styles.ModalHeader}>
               <h4>Criar Categoria</h4>
 						  <span className={styles.ModalCloseButton} onClick={(e)=> CloseModal(e)}>X</span>
             </div>
 
-						<input className={styles.FormCardField} onChange={e => setName(e.target.value)} type="text" name="name" placeholder='Nome'/>
+						<input className={styles.FormCardField} onChange={e => setName(e.target.value)} required type="text" name="name" placeholder='Nome'/>
 
-						<input className={styles.FormCardField} onSubmit={e => SendData(e)} type="submit" value="Adicionar Categoria"/>
-					</form>
+						<input className={styles.FormCardField} onClick={e => SendData(e)} type="submit" value="Adicionar Categoria"/>
+					</div>
 				</div>
 			</div>
 		</>

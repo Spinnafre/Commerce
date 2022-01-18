@@ -40,11 +40,15 @@
     cursor: pointer;
     background-color: firebrick;
     padding: 8px 10px;
-    margin-top: 4px;
+    margin: 4px;
     border-radius: 8px;
     border: none;
     color: white;
     font-weight: bold;
+}
+
+.productWrapper button:first-child{
+    background-color: green;
 }
 
 .productWrapper button:hover{

@@ -15,7 +15,7 @@
 }
 
 .ModalShow{
-  display: block;
+  display: block !important;
 }
 
 .ModalHide{
@@ -32,10 +32,6 @@
   position: fixed;
   top: 26%;
   left: 41.5%;
-}
-
-.ModalPopUp>form{
-  display: block !important;
 }
 
 .ModalCloseButton{
