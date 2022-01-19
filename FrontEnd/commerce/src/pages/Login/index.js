@@ -19,10 +19,8 @@ export default function Login() {
     e.preventDefault();
 
     let empty = false;
-    for(let i in inputValues){
-      if(inputValues[i] === ""){
-        empty = true;
-      }
+    if(inputValues.email === "" || inputValues.password === ""){
+      empty = true;
     }
 
     if(empty === false){

@@ -15,5 +15,6 @@
   margin: 0px 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  column-gap: 30px;
+  row-gap: 10px;
 }

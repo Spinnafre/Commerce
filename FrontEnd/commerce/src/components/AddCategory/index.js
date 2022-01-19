@@ -1,7 +1,7 @@
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 
-export default function AddCategoria() {
+export default function AddCategoria({ReloadCategories}) {
 
 	const [name, setName] = useState("");
   const [showModal, setShowModal] = useState(false)
@@ -35,6 +35,7 @@ export default function AddCategoria() {
       if (result.msg == "Category created successfully") {
         //sucesso
         alert("Categoria criada com sucesso")
+        ReloadCategories(true);
         setShowModal(false)
       } else {
         alert("Ocorreu um erro!")

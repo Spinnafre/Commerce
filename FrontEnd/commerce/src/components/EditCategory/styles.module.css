@@ -1,8 +1,7 @@
-.CreateCategoryButton{
-  background: green !important;
+.EditCategoryButton{
+  background: green;
   color: white;
   font-weight: bold;
-  padding: 6px;
   border: none;
   border-radius: 10px;
   cursor: pointer;

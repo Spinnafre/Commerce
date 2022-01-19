@@ -102,7 +102,6 @@ export default function Products() {
 								Price: element.products.price,
 								Id: element.products.id
 							}
-							console.log(element)
 							return (
 								<ProductSingle {...productFormat} key={element.products.id} />
 							)

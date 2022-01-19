@@ -4,6 +4,7 @@ import CreateCategoryController from '../modules/categories/UseCases/CreateCateg
 import ShowCategoryController from '../modules/categories/UseCases/ShowCategory'
 import ShowCategoriesController from '../modules/categories/UseCases/ShowCategories'
 import DeleteCategoriesController from '../modules/categories/UseCases/DeleteCategory'
+import UpdateCategoriesController from '../modules/categories/UseCases/UpdateCategory'
 
 import { authorizationUser } from "../middlewares/ensureAuthenticated";
 import { userIsAdmin } from "../middlewares/ensureAdmin";
@@ -16,6 +17,9 @@ const categoryRouter=Router()
 
 categoryRouter.post('/category',authorizationUser,userIsAdmin,(req, res) => {
     return CreateCategoryController().handle(req, res)
+})
+categoryRouter.put('/category/:id',authorizationUser,userIsAdmin,(req, res) => {
+    return UpdateCategoriesController().handle(req, res)
 })
 // productRouter.patch('/product',authorizationUser,(req, res) => {
 //     return UpdateProductController().handle(req, res)

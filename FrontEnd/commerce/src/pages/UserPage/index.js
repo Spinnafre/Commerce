@@ -23,12 +23,12 @@ export default function UserPage() {
 
 		if (result && UserToken) {
 			//sucesso
-      console.log(result)
 			setUserData({
         name: result.name,
         login: result.login,
         address: result.address,
-        email: result.email
+        email: result.email,
+        isAdmin: result.isAdmin
       })
 
 		} else {
@@ -52,6 +52,12 @@ export default function UserPage() {
     sessionStorage.removeItem('isAdmin');
     navigate("/")
 	}
+
+  const ReloadUserData = (reload) => {
+    if(reload){
+      getUserData();
+    }
+  }
 
   useEffect(() => {
     getUserData();
@@ -90,7 +96,7 @@ export default function UserPage() {
 
         <div className={styles.ManagementButtons}>
           <button className={styles.DeleteUserButton} onClick={() => DeleteUser()}>Excluir</button>
-          <EditUser {...userData} />
+          <EditUser {...userData} ReloadUserData={ReloadUserData} />
         </div>
       </div>
 		</div>

@@ -1,11 +1,9 @@
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 
-import ProductAdmin from '../../components/ProductAdmin'
-import AddProduct from '../../components/AddProduct'
 import AddCategoria from '../../components/AddCategory'
 import AdminProductList from '../../components/AdminProductList'
-
+import EditCategory from '../../components/EditCategory'
 //PS - URL, Categories, Name, Price
 
 export default function AdminPage() {
@@ -57,6 +55,12 @@ export default function AdminPage() {
 		getCategories();
 	}
 
+	const ReloadCategories = (reload) => {
+		if(reload){
+			getCategories();
+		}
+	}
+
 	useEffect(() => {
 		getCategories();
 	}, [])
@@ -96,7 +100,7 @@ export default function AdminPage() {
 				<div className={styles.CategoriesPanel}>
 					<div className={styles.CategoriesPanelHeader}>
 						<h4>Categorias</h4>
-						<AddCategoria />
+						<AddCategoria ReloadCategories={ReloadCategories} />
 					</div>
 					<ul className={styles.CategoriesList}>
 						{
@@ -105,8 +109,8 @@ export default function AdminPage() {
 									<li className={styles.CategorieSingle} key={elem.id} value={elem.id}>
 										<span>{elem.name}</span>
 										<div>
-											<button className={styles.FormCardField}>Editar</button>
-											<button className={styles.FormCardField} onClick={() => DeleteCategorie(elem.id, elem.name)}>Deletar</button>
+											<EditCategory name={elem.name} id={elem.id} ReloadCategories={ReloadCategories}/>
+											<button className={styles.DeleteCategoryButton} onClick={() => DeleteCategorie(elem.id, elem.name)}>Deletar</button>
 										</div>
 									</li>
 								)

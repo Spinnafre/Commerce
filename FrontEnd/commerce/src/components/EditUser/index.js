@@ -1,13 +1,14 @@
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 
-export default function EditUser({name, login, address, email}) {
+export default function EditUser({name, login, address, email, isAdmin, ReloadUserData}) {
 
 	const [inputValues, setInputValues] = useState({
     name: '',
     login: '',
     address: '',
     email: '',
+    isAdmin: '',
     password: '',
     confPassword: ''
   });
@@ -21,7 +22,7 @@ export default function EditUser({name, login, address, email}) {
     
   const ShowModal = (e) => {
 		e.preventDefault();
-    setInputValues({...inputValues, name: name, login: login, address: address, email: email})
+    setInputValues({...inputValues, name: name, login: login, address: address, email: email, isAdmin: isAdmin})
     setShowModal(true);
   }
 
@@ -34,11 +35,9 @@ export default function EditUser({name, login, address, email}) {
     e.preventDefault();
 
     let empty = false;
-    for(let i in inputValues){
-      if(inputValues[i] === ""){
-        empty = true;
-      }
-    }
+    if(inputValues.name === "" || inputValues.login === "" || inputValues.address === "" || inputValues.email === "" || inputValues.password !== inputValues.confPassword){
+      empty = true;
+    }  
 
     if(empty === false){
 			const UserToken = sessionStorage.getItem('token')
@@ -53,16 +52,28 @@ export default function EditUser({name, login, address, email}) {
 					login: inputValues.login,
 					address: inputValues.address,
 					email: inputValues.email,
+          isAdmin: inputValues.isAdmin,
 					password: inputValues.password,
-					confPassword: inputValues.confPassword
+					confirmPassword: inputValues.confPassword
         })
       }).then((res) => res.json())
 
+      console.log({
+        name: inputValues.name,
+        login: inputValues.login,
+        address: inputValues.address,
+        email: inputValues.email,
+        confirmPassword: inputValues.confPassword,
+        isAdmin: inputValues.isAdmin,
+        password: inputValues.password
+      })
+
       console.log(result)
 
-      if (result.code == 200) {
+      if (result.msg == "User updated successfully") {
         alert("Usuário editado com sucesso")
-        
+        setShowModal(false)
+        ReloadUserData(true)
       } else {
         alert("Ocorreu um erro!")
       }
@@ -95,9 +106,8 @@ export default function EditUser({name, login, address, email}) {
 
 					<input className={styles.FormCardField} onChange={handleOnChange} value={inputValues.confPassword} type="password" name="confPassword" placeholder='Confirme a senha' />
 
-					<button className={styles.FormCardField} onSubmit={e => SendData(e)}>Editar Perfil</button>
+					<button className={styles.FormCardField} onClick={e => SendData(e)}>Editar Perfil</button>
 					<button className={styles.ModalCloseButton} onClick={(e)=> CloseModal(e)}>Cancelar</button>
-
 				</form>
 			</div>
 		</div>

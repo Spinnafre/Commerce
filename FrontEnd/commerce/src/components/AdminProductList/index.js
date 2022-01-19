@@ -47,7 +47,8 @@ export default function AdminProductList() {
             Name: element.products.name,
             Price: element.products.price,
             Quantidade: element.products.qtd,
-            Id: element.products.id
+            Id: element.products.id,
+            GetNewProductList
         }
           return (
             <ProductAdmin {...product} key={element.products.id}/>

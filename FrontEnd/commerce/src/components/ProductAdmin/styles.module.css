@@ -11,6 +11,8 @@
 
 .productWrapper img{
     border-radius: 5px;
+    width: 150px;
+    height: 150px;
 }
 
 .productCategories{
@@ -47,10 +49,14 @@
     font-weight: bold;
 }
 
+.productWrapper button:hover{
+    background-color: crimson;
+}
+
 .productWrapper button:first-child{
     background-color: green;
 }
 
-.productWrapper button:hover{
-    background-color: crimson;
+.productWrapper button:first-child:hover{
+    background-color: rgb(0, 177, 0);
 }

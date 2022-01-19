@@ -77,3 +77,15 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.DeleteCategoryButton{
+  display: block;
+  margin: 5px 10px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: crimson;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
