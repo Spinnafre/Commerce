@@ -1,6 +1,6 @@
 import { SalesRepository } from '../../Repository/salesRepository';
 import { ShowSalesProductController } from './ShowSaleProductController';
-import {  ShowSaleProductUserCase} from '../ShowSaleProduct/ShowSaleProductUserCase';
+import {  ShowSaleProductUserCase} from './ShowSaleProductUserCase';
 
 export default ():ShowSalesProductController=>{
     const saleRepository=new SalesRepository()

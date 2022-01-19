@@ -30,6 +30,7 @@ export class ProductCategoryRepository implements IProductCategoryRepository {
     }
     async show(): Promise<Array<IProductCategory>> {
         const productsCategories=await this.repository.find({relations:['products','categories']})
+        console.log(productsCategories)
         return productsCategories
     }
     async findByProductIdAndCategoryId(product_id:string,category_id:string):Promise<IProductCategories>{

@@ -24,7 +24,6 @@ export class ProductRepository implements IProductRepository {
                 const categoryRepository = new CategoryRepository()
                 category_id.forEach(async c => {
                     let category = await categoryRepository.findById(c)
-                    console.log({ products: product, categories: category })
                     await productCategoryRepository.create({ products: product, categories: category })
                 })
             }
@@ -42,7 +41,6 @@ export class ProductRepository implements IProductRepository {
                 }
                 category_id.forEach(async c => {
                     let category = await categoryRepository.findById(c)
-                    console.log({ products: product, categories: category })
                     await productCategoryRepository.create({ products: product, categories: category })
                 })
 
@@ -68,7 +66,6 @@ export class ProductRepository implements IProductRepository {
         const productCategoryRepository=new ProductCategoryRepository()
 
         const products = await productCategoryRepository.show()
-        console.log(products)
         return products
     }
     async findOneProduct(id: string): Promise<IProduct> {

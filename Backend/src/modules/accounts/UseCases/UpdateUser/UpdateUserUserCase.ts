@@ -2,11 +2,13 @@ import { AppErros } from '../../../../errors/AppErros';
 import { hash } from 'bcrypt';
 import { IUser } from '../../Protocols/IUser';
 import { IUserRepository } from '../../Protocols/IUserRepository';
-import { IUpdateUsersUserCase } from './../../Protocols/UpdateUser/IUpdateUserUserCase';
+import { IUpdateUsersUserCase } from '../../Protocols/UpdateUser/IUpdateUserUserCase';
 import {egualOrError,checkExists,notExistsOrError} from '../../../../utils/validator'
 export class UpdateUserUserCase implements IUpdateUsersUserCase{
     constructor(private userRepository:IUserRepository){}
     async execute({id,name,login,address,email,password,confirmPassword,isAdmin}:IUser):Promise<void>{
+        console.log({id,name,login,address,email,password,confirmPassword,isAdmin});
+        
         const user = await this.userRepository.findById(id)
         if(!user){
             throw new AppErros('User not exists')

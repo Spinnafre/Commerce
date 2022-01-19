@@ -2,7 +2,7 @@ import { hash } from 'bcrypt';
 import { AppErros } from '../../../../errors/AppErros';
 import { IUser } from '../../Protocols/IUser';
 import { IUserRepository } from '../../Protocols/IUserRepository';
-import { ICreateUserUserCase } from './../../Protocols/CreateUser/ICreateUserUserCase';
+import { ICreateUserUserCase } from '../../Protocols/CreateUser/ICreateUserUserCase';
 export class CreateUserUserCase implements ICreateUserUserCase{
     constructor(private userRepository:IUserRepository){}
     async execute({name,login,address,email,password,isAdmin}:IUser):Promise<void>{

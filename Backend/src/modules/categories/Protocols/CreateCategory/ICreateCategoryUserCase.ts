@@ -1,4 +1,4 @@
-import { ICategory } from './../ICategories';
+import { ICategory } from '../ICategories';
 
 
 

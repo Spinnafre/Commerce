@@ -1,4 +1,4 @@
-import { AppErros } from './../errors/AppErros';
+import { AppErros } from '../errors/AppErros';
 // Check password is egual to confirmPassword
 function egualOrError(valueA:string,valueB:string,msg:string):void{
     if(valueA !== valueB) throw new AppErros(msg)

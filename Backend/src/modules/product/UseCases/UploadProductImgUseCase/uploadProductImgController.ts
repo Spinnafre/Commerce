@@ -1,4 +1,4 @@
-import { IProductImageUseCase } from './../../Protocols/IProductImage/IProductImage';
+import { IProductImageUseCase } from '../../Protocols/IProductImage/IProductImage';
 import { Response,Request } from 'express';
 
 export class UploadProductImagesController{

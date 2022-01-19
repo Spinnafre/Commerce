@@ -1,5 +1,5 @@
 import { IRequestProductImageUseCase,IProductImageUseCase } from '../../Protocols/IProductImage/IProductImage';
-import { IStorageProvider } from './../../../../shared/container/providers/StorageProvider/Protocols/IStorageProvider';
+import { IStorageProvider } from '../../../../shared/container/providers/StorageProvider/Protocols/IStorageProvider';
 
 export class UploadProductImageUseCase implements IProductImageUseCase{
     constructor(

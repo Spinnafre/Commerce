@@ -1,4 +1,4 @@
-import { IProduct } from './../../Protocols/IProduct';
+import { IProduct } from '../../Protocols/IProduct';
 import { AppErros } from '../../../../errors/AppErros';
 import { ICreateProductUserCase } from '../../Protocols/CreateProduct/ICreateProductUserCase';
 import { IProductRepository } from '../../Protocols/IProductRepository';

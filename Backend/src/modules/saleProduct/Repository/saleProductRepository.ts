@@ -1,4 +1,4 @@
-import { SaleProduct } from './../mapper/salesProduct';
+import { SaleProduct } from '../mapper/salesProduct';
 import { getRepository, Repository } from "typeorm";
 import { ISaleProductRepository } from "../Protocols/ISalesRepository";
 import { ISaleProduct } from '../Protocols/ISaleProduct';

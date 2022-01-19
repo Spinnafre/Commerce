@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import {resolve} from 'path'
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
-import swaggerFile from '../src/swagger.json'
+import swaggerFile from './swagger.json'
 import cors from "cors";
 import "reflect-metadata";
 

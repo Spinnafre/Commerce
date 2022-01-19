@@ -1,4 +1,4 @@
-import { localStorageProvider } from './../../../../shared/container/providers/StorageProvider/LocalStorageProvider';
+import { localStorageProvider } from '../../../../shared/container/providers/StorageProvider/LocalStorageProvider';
 import { UploadProductImagesController } from './uploadProductImgController';
 import { UploadProductImageUseCase } from './uploadProductImgUseCase';
 
