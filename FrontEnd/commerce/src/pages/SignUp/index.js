@@ -22,29 +22,29 @@ export default function SignUp() {
   const SendData = async e => {
     e.preventDefault();
     let empty = false;
-    for(let i in inputValues){
-      if(inputValues[i] === ""){
-        empty = true;
-      }
+    if(inputValues.email === "" || inputValues.endereco === "" || inputValues.nome === "" || inputValues.login === "" || inputValues.senha === ""){
+      empty = true;
     }
 
-    if(empty === false && inputValues[4] === inputValues[5]){
+    console.log(inputValues)
+
+    if(empty === false && inputValues.senha === inputValues.senhaAux){
       const result = await fetch('http://localhost:3333/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          name: inputValues[0],
-          login: inputValues[1],
-          address: inputValues[2],
-          email: inputValues[3],
-          password: inputValues[4],
+          name: inputValues.nome,
+          login: inputValues.login,
+          address: inputValues.endereco,
+          email: inputValues.email,
+          password: inputValues.senha,
 				  idAdmin: false
         })
       }).then((res) => res.json())
 
-      if(result.msg){
+      if(result.msg === "User created successfully"){
         alert("Cadastro realizado com sucesso");
         console.log(result)
         //mudar para página de login
