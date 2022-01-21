@@ -32,6 +32,10 @@ export class UpdateUserUserCase implements IUpdateUsersUserCase{
         }else{
             user.isAdmin=false
         }
+        user.name=name
+        user.login=login
+        user.address=address
+        user.email=email
 
         await this.userRepository.create(user)
 

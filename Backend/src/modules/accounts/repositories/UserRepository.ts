@@ -9,6 +9,7 @@ export class UserRepository implements IUserRepository {
         this.repository = getRepository(Users)
     }
     async create({ id,name, login, address, email, password, isAdmin }: IUser): Promise<void> {
+        console.log('ATUALIZANDO USUÁRIO ',{ id,name, login, address, email, password, isAdmin });
         const user = this.repository.create({ id,name, login, address, email, password, isAdmin })
         await this.repository.save(user)
     }
