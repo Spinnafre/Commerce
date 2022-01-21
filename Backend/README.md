@@ -71,7 +71,7 @@ $ npm start
 
 ```sh
 
-# Executando a aplicação:
+# Executando a aplicação :
 $ npm start
 
 # Instanciando o banco de dados:
