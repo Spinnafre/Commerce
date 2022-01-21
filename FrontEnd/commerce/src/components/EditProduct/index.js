@@ -4,16 +4,16 @@ import AddCategoria from '../AddCategory';
 
 //PS - URL, Categories, Name, Price
 
-export default function AddProduct({GetNewProductList}) {
+export default function EditProduct({URL, Categorie, Name, Price, Quantidade, Id, GetNewProductList}) {
 	
 	const [inputValues, setInputValues] = useState({
-		productName: '',
-		imgUrl: '',
-    price: '',
-    qtd: ''
+		productName: Name,
+		imgUrl: URL,
+    price: Price,
+    qtd: Quantidade
   });
 	
-	const [category1, setCategory1] = useState("")
+	const [category1, setCategory1] = useState(Categorie)
 	
 	const handleOnChange = event => {
 		const { name, value } = event.target;
@@ -48,8 +48,8 @@ export default function AddProduct({GetNewProductList}) {
     
 		if(empty === false){
 			const UserToken = sessionStorage.getItem('token')
-			const result = await fetch('http://localhost:3333/product', {
-				method: 'POST',
+			const result = await fetch(`http://localhost:3333/product/${Id}`, {
+				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json',
 					"Authorization": `Bearer ${UserToken}`
@@ -65,25 +65,11 @@ export default function AddProduct({GetNewProductList}) {
 				})
 			}).then((res) => res.json())
 			
-			if(result.msg === "Product created successfully"){
-				alert("Produto criado com sucesso!")
+			alert("Produto Editado com sucesso!")
 
-				GetNewProductList({
-					name: inputValues.productName,
-					price: inputValues.price,
-					img_url: inputValues.imgUrl,
-					qtd: inputValues.qtd,
-					category_id:[
-						category1
-					]
-				})
+			GetNewProductList(true)
 
-				setShowModal(false)
-			} else {
-				alert("Ocorreu um erro ao tentar criar produto!" + result.msg)
-			}
-		}else{
-			alert("Preencha todos os campos")
+			setShowModal(false)
 		}
   }
 
@@ -106,7 +92,7 @@ export default function AddProduct({GetNewProductList}) {
 
 	return (
 	<>
-		<button className={styles.AddProductButton} onClick={(e) => ShowModal(e)}>Adicionar produto</button>
+		<button className={styles.AddProductButton} onClick={(e) => ShowModal(e)}>Editar</button>
 
 		<div className={`styles.Modal ${showModal ? styles.ModalShow : styles.ModalHide}`}></div>
 		<div className={`styles.Modal ${showModal ? styles.ModalShow : styles.ModalHide}`}>
@@ -138,7 +124,7 @@ export default function AddProduct({GetNewProductList}) {
 						<AddCategoria />
 					</div>
 
-					<button className={styles.FormCardField} onClick={e => SendData(e)}>Criar produto</button>
+					<button className={styles.EditButton} onClick={e => SendData(e)}>Editar</button>
 				</form>
 			</div>
 		</div>

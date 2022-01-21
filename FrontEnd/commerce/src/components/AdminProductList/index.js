@@ -1,7 +1,8 @@
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 
-import AddProduct from '../../components/AddProduct'
+import ProductAdmin from '../ProductAdmin'
+import AddProduct from '../AddProduct'
 
 //PS - URL, Categories, Name, Price
 
@@ -16,9 +17,15 @@ export default function AdminProductList() {
         'Content-Type': 'application/json'
       }
     }).then((res) => res.json())
-    console.log(List)
 
     setProducts(List);
+    console.log(List)
+  }
+
+  const GetNewProductList = (childData) => {
+    if(childData){
+      GetProducts();
+    }
   }
 
   useEffect(() => {
@@ -27,12 +34,24 @@ export default function AdminProductList() {
 
 	return (
 		<div className={styles.Products}>
+      <div className={styles.ProductListHeader}>
+        <h4>Produtos</h4>
+				<AddProduct GetNewProductList={GetNewProductList}/>
+      </div>
 		  <div className={styles.ProductList}>
       {
-        products ? products.map(element => {
-          console.log(element)
+        products && products.length ? products.map(element => {
+          const product = {
+            URL: element.products.img_url || "https://picsum.photos/100", 
+            Categorie: element.categories.name,
+            Name: element.products.name,
+            Price: element.products.price,
+            Quantidade: element.products.qtd,
+            Id: element.products.id,
+            GetNewProductList
+        }
           return (
-            <ProductSingle {...element} />
+            <ProductAdmin {...product} key={element.products.id}/>
           )
         }) : "Não há itens para mostrar, adicione itens para mostrar!"
       }

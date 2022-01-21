@@ -30,3 +30,30 @@
   padding-right: 20px;
   font-weight: bold;
 }
+
+.ManagementButtons{
+  width: fit-content;
+  margin: 20px auto;
+}
+
+.DeleteUserButton{
+  background-color: crimson;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  padding: 10px 14px;
+  margin: 0 20px;
+}
+
+.EditUserButton{
+  background-color: green;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  padding: 10px 14px;
+  margin: 0 20px;
+}

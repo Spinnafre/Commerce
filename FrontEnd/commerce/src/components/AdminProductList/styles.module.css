@@ -1,15 +1,20 @@
 .Products{
-  background-color: rgb(163, 95, 11);
+  background-color: rgb(192, 141, 79);
   height: 100vh;
-  width: 98%;
-  margin: 0 10%;
-  padding: 20px 10px;
+  padding: 0;
+}
+
+.ProductListHeader{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .ProductList{
   height: 100vh;
-  margin: 0px auto;
+  margin: 0px 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  column-gap: 30px;
+  row-gap: 10px;
 }

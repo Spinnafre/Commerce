@@ -1,4 +1,4 @@
-.AddProductButton{
+.EditUser{
   background: green;
   color: white;
   font-weight: bold;
@@ -55,8 +55,8 @@
   font-weight: bold;
   cursor: pointer;
   padding: 5px;
-  width: 20px;
-  height: 20px;
+  width: auto;
+  height: auto;
   border-radius: 5px;
 }
 
@@ -71,7 +71,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
 }
 
 .QuantField>div{

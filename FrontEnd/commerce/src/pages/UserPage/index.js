@@ -1,29 +1,14 @@
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
-
-
+import { useNavigate } from 'react-router-dom'
+import EditUser from '../../components/EditUser'
 
 //PS - URL, Categories, Name, Price
 
 export default function UserPage() {
+  let navigate = useNavigate();
 
   const [userData, setUserData] = useState([])
-  let UserKeys = []
-  let UserValues = []
-
-  const UserData = {
-    "id": "b3395b98-b2b4-4014-89fd-430019353dec",
-    "name": "Davi Silva da Penha",
-    "login": "Spin",
-    "address": "Rua 8, nº 40",
-    "email": "mrspinnafre@gmai.com",
-    "password": "$2b$08$Uq7ZLpQYFe0Vo5Lxi8t9MeR.PltFW0.9wg7L2OT1X7Z7qJKQXP5EK",
-    "isAdmin": true,
-    "created_at": "2021-08-30T20:41:20.248Z"
-  }
-
-  console.log(Object.keys(UserData))
-  console.log(Object.values(UserData))
 
   const getUserData = async () => {
     const UserId = sessionStorage.getItem('id')
@@ -32,30 +17,51 @@ export default function UserPage() {
 		const result = await fetch(`http://localhost:3333/user/${UserId}`, {
 			method: 'GET',
 			headers: {
-				'Content-Type': 'application/json',
         "Authorization": `Bearer ${UserToken}`
 			}
 		}).then((res) => res.json())
 
-		if (result) {
+		if (result && UserToken) {
 			//sucesso
-      console.log(result)
-			setUserData(result)
+			setUserData({
+        name: result.name,
+        login: result.login,
+        address: result.address,
+        email: result.email,
+        isAdmin: result.isAdmin
+      })
+
 		} else {
 			alert("Ocorreu um erro ao tentar pegar os dados!")
+      navigate("/")
 		}
 	}
+
+  // deletando usuário
+	const DeleteUser = () => {
+    const UserId = sessionStorage.getItem('id')
+    const UserToken = sessionStorage.getItem('token')
+		fetch(`http://localhost:3333/user/${UserId}`, {
+			method: 'DELETE',
+			headers: {
+        "Authorization": `Bearer ${UserToken}`
+			}
+		})
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('id');
+    sessionStorage.removeItem('isAdmin');
+    navigate("/")
+	}
+
+  const ReloadUserData = (reload) => {
+    if(reload){
+      getUserData();
+    }
+  }
 
   useEffect(() => {
     getUserData();
   }, [])
-	
-  useEffect(() => {
-    if(userData){
-      UserKeys = Object.keys(userData)
-      UserValues = Object.values(userData)
-    }
-  }, [userData])
 
 	return (
 		<div className={styles.UserPage}>
@@ -64,27 +70,23 @@ export default function UserPage() {
         <table>
           <tbody className={styles.TableBody}>
             {
-              UserData ? 
+              userData ? 
               <>
               <tr>
-                <td className={styles.LeftColumn}>{UserKeys[1]}:</td>
-                <td>{UserValues[1]}</td>
+                <td className={styles.LeftColumn}>Nome:</td>
+                <td>{userData.name}</td>
               </tr>
               <tr>
-                <td className={styles.LeftColumn}>{UserKeys[2]}:</td>
-                <td>{UserValues[2]}</td>
+                <td className={styles.LeftColumn}>Login:</td>
+                <td>{userData.login}</td>
               </tr>
               <tr>
-                <td className={styles.LeftColumn}>{UserKeys[3]}:</td>
-                <td>{UserValues[3]}</td>
+                <td className={styles.LeftColumn}>Endereço:</td>
+                <td>{userData.address}</td>
               </tr>
               <tr>
-                <td className={styles.LeftColumn}>{UserKeys[4]}:</td>
-                <td>{UserValues[4]}</td>
-              </tr>
-              <tr>
-                <td className={styles.LeftColumn}>{UserKeys[5]}:</td>
-                <td>{UserValues[5]}</td>
+                <td className={styles.LeftColumn}>Email:</td>
+                <td>{userData.email}</td>
               </tr>
               </>
                : "Carregando Informações do Usuário"
@@ -92,7 +94,10 @@ export default function UserPage() {
           </tbody>
         </table>
 
-
+        <div className={styles.ManagementButtons}>
+          <button className={styles.DeleteUserButton} onClick={() => DeleteUser()}>Excluir</button>
+          <EditUser {...userData} ReloadUserData={ReloadUserData} />
+        </div>
       </div>
 		</div>
 	)

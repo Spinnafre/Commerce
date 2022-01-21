@@ -1,106 +1,126 @@
 import styles from './styles.module.css'
 import ProductSingle from '../ProductSingle'
 import { useState, useEffect } from 'react'
-import AddProduct from '../AddProduct'
 
 //PS - URL, Categories, Name, Price
 
 export default function Products() {
 
-    const [products, setProducts] = useState([])
+	const [products, setProducts] = useState([])
 
-    const props = {
-        URL: "https://picsum.photos/100",
-        Categorie1: "Category1",
-        Categorie2: "Category2",
-        Name: "Name",
-        Price: "Price"
-    }
+	const props = {
+		URL: "https://picsum.photos/100",
+		Categorie: "Category",
+		Name: "Name",
+		Price: "Price"
+	}
 
-    const GetProducts = async () => {
-      const List = await fetch('http://localhost:3333/product', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then((res) => res.json())
-      console.log(List)
+	const GetProducts = async () => {
+		const List = await fetch('http://localhost:3333/product', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then((res) => res.json())
+		console.log(List)
 
-      setProducts(List);
-    }
+		setProducts(List);
+	}
 
-    useEffect(() => {
-        GetProducts();
-    }, [])
+	const [allCategories, setAllCategories] = useState([]);
 
-    const [category1, setCategory1] = useState("1")
-    const [category2, setCategory2] = useState("1")
+	const getCategories = async () => {
+		const result = await fetch('http://localhost:3333/category', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then((res) => res.json())
 
-    const sendData = () => {
-        //fazer busca por categorias
-    }
-    
-    return(
-        <>
-        <div className={styles.topBar}>
-            <form onSubmit={sendData()}>
-                <div className={styles.selectCategory}>
-                    <label>
-                        Categoria:
-                        <select value={category1} onChange={e => setCategory1(e.target.value)}>
-                            <option defaultValue value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </label>
-                </div>
-                <div className={styles.selectCategory}>
-                    <label>
-                        Categoria:
-                        <select value={category2} onChange={e => setCategory2(e.target.value)}>
-                            <option defaultValue value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </label>
-                </div>
-                <input type="submit" value="Pesquisar" />
-            </form>
-        </div>
+		if (result) {
+			//sucesso
+			setAllCategories(result)
+		} else {
+			alert("Ocorreu um erro ao tentar pegar as categorias!")
+		}
+	}
 
-        <div className={styles.products}>
-            <div className={styles.productList}>
-                {
-                    products ? products.map(element => {
-                        element = {
-                            URL: element.products.url,
-                            Categorie1: element.categories[0],
-                            Categorie2: element.categories[1],
-                            Name: element.products.name,
-                            Price: element.products.price
-                        }
-                        console.log(element)
-                        return(
-                            <ProductSingle {...element}/>
-                        )
-                    }) : "Não há itens para mostrar, melhor contactar a administração!"
-                }
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-                <ProductSingle {...props}/>
-            </div>
-        </div>
-        </>
-    )
+	useEffect(() => {
+		GetProducts();
+		getCategories();
+	}, [])
+
+	const [category1, setCategory1] = useState("1")
+	const [category2, setCategory2] = useState("1")
+
+	const sendData = () => {
+		//fazer busca por categorias
+	}
+
+	return (
+		<>
+			<div className={styles.topBar}>
+				<form onSubmit={sendData()}>
+					<div className={styles.selectCategory}>
+						<label>
+							Categoria:
+							<select value={category1} onChange={e => setCategory1(e.target.value)}>
+								<option value="" disabled defaultChecked>Categoria</option>
+								{
+									allCategories && allCategories.length ? allCategories.map(elem => (
+										<option value={elem.id} key={elem.id}>{elem.name}</option>
+									)) : "Placeholder"
+								}
+							</select>
+						</label>
+					</div>
+					<div className={styles.selectCategory}>
+						<label>
+							Categoria:
+							<select value={category2} onChange={e => setCategory2(e.target.value)}>
+								<option value="" disabled defaultChecked>Categoria</option>
+								{
+									allCategories && allCategories.length ? allCategories.map(elem => (
+										<option value={elem.id} key={elem.id}>{elem.name}</option>
+									)) : "Placeholder"
+								}
+							</select>
+						</label>
+					</div>
+					<input type="submit" value="Pesquisar" />
+				</form>
+			</div>
+
+			<div className={styles.products}>
+				<div className={styles.productList}>
+					{
+						products && products.length ? products.map(element => {
+							const productFormat = {
+								URL: element.products.img_url || "https://picsum.photos/100",
+								Categorie: element.categories.name,
+								Name: element.products.name,
+								Price: element.products.price,
+								Id: element.products.id
+							}
+							return (
+								<ProductSingle {...productFormat} key={element.products.id} />
+							)
+						}) : "Não há itens para mostrar, melhor contactar a administração!"
+					}
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+					<ProductSingle {...props} />
+				</div>
+			</div>
+		</>
+	)
 }

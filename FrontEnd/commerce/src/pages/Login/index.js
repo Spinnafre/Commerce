@@ -4,11 +4,10 @@ import { useState } from 'react';
 
 export default function Login() {
   let navigate = useNavigate();
-  let isAdmin = true;
 
   const [inputValues, setInputValues] = useState({
     email: '',
-    senha: ''
+    password: ''
   });
 
   const handleOnChange = event => {
@@ -18,11 +17,10 @@ export default function Login() {
 
   const SendData = async e => {
     e.preventDefault();
+
     let empty = false;
-    for(let i in inputValues){
-      if(inputValues[i] === ""){
-        empty = true;
-      }
+    if(inputValues.email === "" || inputValues.password === ""){
+      empty = true;
     }
 
     if(empty === false){
@@ -32,26 +30,25 @@ export default function Login() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email: inputValues[0],
-          password: inputValues[1]
+          email: inputValues.email,
+          password: inputValues.password
         })
       }).then((res) => res.json())
 
       if (result.token) {
-        console.log('token: ' + result.token);
         //salvando o token
-        sessionStorage.setItem('token', result.data);
+        sessionStorage.setItem('token', result.token);
 
         //guardando se usuário é admin result.isAdmin
-        sessionStorage.setItem('isAdmin', isAdmin);
+        sessionStorage.setItem('isAdmin', result.user.isAdmin);
 
         //guardando o id
-        sessionStorage.setItem('id', result.id)
+        sessionStorage.setItem('id', result.user.id)
         
         alert('Usuário logado!');
 
         //mudar para página inicial
-        navigate("/", {replace: true})
+        navigate("/");
       } else {
         alert("Ocorreu um erro!")
       }
@@ -71,8 +68,8 @@ export default function Login() {
 
           <section className={styles.FormCardBody}>
               <form name="formlogin">
-                <input type="text" className={styles.FormCardField} onChange={handleOnChange} value={inputValues.email} id="email" name="email" placeholder="email" />
-                <input type="text" className={styles.FormCardField} onChange={handleOnChange} value={inputValues.senha} id="senha" name="senha" placeholder="senha" />
+                <input type="text" className={styles.FormCardField} onChange={handleOnChange} value={inputValues.email} name="email" placeholder="email" />
+                <input type="password" className={styles.FormCardField} onChange={handleOnChange} value={inputValues.password} name="password" placeholder="senha" />
                 <input type='button' className={styles.FormCardField} onClick={(e) => SendData(e)} value="Login"/>
               </form>
 

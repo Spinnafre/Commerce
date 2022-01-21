@@ -1,4 +1,4 @@
-.topBar>form{
+.topBar{
   background-color: antiquewhite;
   gap: 40px;
   display: flex;
@@ -6,11 +6,17 @@
   align-items: center;
 }
 
-.topBar>form>.selectCategory>select{
+.topBar .searchFields{
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.topBar>div>.selectCategory>select{
   margin-left: 10px;
 }
 
-.topBar>form>input{
+.topBar>div>input{
   border: none;
   padding: 8px 14px;
   border-radius: 5px;
@@ -32,20 +38,6 @@
   width: 50%;
 }
 
-.products{
-  background-color: rgb(163, 95, 11);
-  margin: 0 auto;
-  padding: 20px 10px;
-}
-
-.productList{
-  height: 100vh;
-  margin: 0px auto;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
 .CategoriesPanel{
   background-color: chocolate;
 }
@@ -58,4 +50,42 @@
 
 .CategoriesPanel .CategoriesList{
   list-style: none;
+}
+
+.CategorieSingle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: antiquewhite;
+  padding: 5px 8px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.CategorieSingle>div{
+  display: flex;
+}
+
+.selectCategory{
+  display: flex;
+}
+
+.FormCardField{
+  display: block;
+  margin: 5px 10px;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.DeleteCategoryButton{
+  display: block;
+  margin: 5px 10px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: crimson;
+  border: none;
+  color: white;
+  font-weight: bold;
 }
