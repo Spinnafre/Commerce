@@ -8,13 +8,6 @@ export default function Products() {
 
 	const [products, setProducts] = useState([])
 
-	const props = {
-		URL: "https://picsum.photos/100",
-		Categorie: "Category",
-		Name: "Name",
-		Price: "Price"
-	}
-
 	const GetProducts = async () => {
 		const List = await fetch('http://localhost:3333/product', {
 			method: 'GET',
@@ -107,18 +100,6 @@ export default function Products() {
 							)
 						}) : "Não há itens para mostrar, melhor contactar a administração!"
 					}
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
-					<ProductSingle {...props} />
 				</div>
 			</div>
 		</>

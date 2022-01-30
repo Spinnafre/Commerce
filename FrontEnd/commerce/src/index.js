@@ -10,6 +10,8 @@ import Cadastro from './pages/SignUp/index'
 import Index from './pages/index/Index'
 import AdminPage from './pages/AdminPage/index'
 import UserInfo from './pages/UserPage/index'
+import MinhasCompras from './pages/MinhasCompras/index'
+import Relatorios from './pages/Relatorios/index'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,6 +24,8 @@ ReactDOM.render(
           {/* Verificar se é adm e mostrar a AdminPage */}
           <Route path='admin' element={<AdminPage />}/>
           <Route path='userinfo' element={<UserInfo />}/>
+          <Route path='compras' element={<MinhasCompras />}/>
+          <Route path='relatorios' element={<Relatorios />}/>
         </Route>
       </Routes>
     </BrowserRouter>
