@@ -53,16 +53,25 @@ Após configurar o arquivo `ormconfig.json`, rode as migrations para criar o esq
 ```sh
 $ npm run migration:run
 ```
+Para popular o banco com alguns dados como usuário, produto e categoria é necessário executar o comando de seed:
+```sh
+# Executar seeds para criar usuário, produto e categoria
+$ npm run seed:admin
+```
+**Atenção**, o usuário criado será por padrão Administrador, o email será "admin@gmail.com" e a senha será  "admin"
+
 
 Para rodar o projeto será necessário executar o seguinte comando:
 ```sh
 $ npm start
 ```
+
+
 ### Utilizando o Server
 
 ```sh
 
-# Executando a aplicação:
+# Executando a aplicação :
 $ npm start
 
 # Instanciando o banco de dados:
@@ -70,8 +79,6 @@ $ npm run migration:run
 
 ```
 Para abrir a documentação da aplicação e conseguir interagir com as rotas é só acessar o endereço http://localhost:3333/api-docs/ com a aplicação rodando na máquina local.
-
-
 
 
 <!-- Techs -->
