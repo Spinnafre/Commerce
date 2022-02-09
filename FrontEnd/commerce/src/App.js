@@ -49,39 +49,68 @@ function App() {
         }}>
           <Link style={{
             textDecoration: "none",
-            color: 'white',
-            cursor: 'pointer'
-          }} to="/">Produtos</Link> |{" "}
+            color: '#1a0d00',
+            cursor: 'pointer',
+            margin: '0 5px',
+            padding: '2px 6px',
+            borderRadius: '4px',
+            backgroundColor: '#ffe680'
+          }} to="/">Produtos</Link>
 
           {
             token ? 
             <>
               <Link style={{
                 textDecoration: "none",
-                color: 'white',
-                cursor: 'pointer'
-              }} to="/userinfo">Perfil</Link> |{" "}
+                color: '#1a0d00',
+                cursor: 'pointer',
+                margin: '0 5px',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: '#ffe680'
+              }} to="/userinfo">Perfil</Link>
 
               <p style={{
                 textDecoration: "none",
-                color: 'white',
+                color: '#1a0d00',
                 cursor: 'pointer',
-                margin: "0"
-              }} onClick={() => DeleteUserData()}>Logout</p> |{" "}
+                margin: '0 5px',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: '#ffe680'
+              }} onClick={() => DeleteUserData()}>Logout</p>
+
+              <Link style={{
+                textDecoration: "none",
+                color: '#1a0d00',
+                cursor: 'pointer',
+                margin: '0 5px',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: '#ffe680'
+              }} to="/compras">Minhas Compras</Link>
             </>
             : 
             <>
               <Link style={{
                 textDecoration: "none",
-                color: 'white',
-                cursor: 'pointer'
-              }} to="/login">Login</Link> |{" "}
+                color: '#1a0d00',
+                cursor: 'pointer',
+                margin: '0 5px',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: '#ffe680'
+              }} to="/login">Login</Link>
       
               <Link style={{
                 textDecoration: "none",
-                color: 'white',
-                cursor: 'pointer'
-              }} to="/cadastro">Cadastre-se</Link> |{" "}
+                color: '#1a0d00',
+                cursor: 'pointer',
+                margin: '0 5px',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: '#ffe680'
+              }} to="/cadastro">Cadastre-se</Link>
             </>
           }
 
@@ -90,9 +119,23 @@ function App() {
             <>
               <Link style={{
                 textDecoration: "none",
-                color: 'white',
-                cursor: 'pointer'
-              }} to="/admin">Painel de Adm</Link>
+                color: '#1a0d00',
+                cursor: 'pointer',
+                margin: '0 5px',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: '#ffe680'
+              }} to="/admin">Painel de Adm.</Link>
+
+              <Link style={{
+                textDecoration: "none",
+                color: '#1a0d00',
+                cursor: 'pointer',
+                margin: '0 5px',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: '#ffe680'
+              }} to="/relatorios">Relatórios</Link>
             </> : ""
           }
         </div>

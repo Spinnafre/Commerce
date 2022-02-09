@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from './styles.module.css'
 
-export default function ProductSingle({ URL, Categorie, Name, Price, id }) {
+export default function ProductSingle({ URL, Categorie, Name, Price, Id }) {
 	const [Cart, setCart] = useState([])
 
+	//console.log( URL, Categorie, Name, Price, id )
 	function LoadCart() {
 		//recuperar carrinho 
 		let cart = Cart
@@ -16,7 +17,8 @@ export default function ProductSingle({ URL, Categorie, Name, Price, id }) {
 				cart.push({
 					name: itemValueArray[0],
 					price: itemValueArray[1],
-					count: itemValueArray[2]
+					count: itemValueArray[2],
+					id: itemValueArray[3]
 				})
 			}
 		}
@@ -26,7 +28,7 @@ export default function ProductSingle({ URL, Categorie, Name, Price, id }) {
 	function SaveCart() {
 		let cart = Cart
 		for (var item in cart) {
-			document.cookie = `${cart[item].name}=` + cart[item].name + ',' + cart[item].price + ',' + cart[item].count;
+			document.cookie = `${cart[item].name}=` + cart[item].name + ',' + cart[item].price + ',' + cart[item].count + ',' + cart[item].id;
 			//console.log(document.cookie)
 		}
 		//console.log(cart)
@@ -45,10 +47,12 @@ export default function ProductSingle({ URL, Categorie, Name, Price, id }) {
 		cart.push({
 			name: Name,
 			price: Price,
-			count: 1
+			count: 1,
+			id: Id
 		});
 		setCart(cart);
 		SaveCart();
+		LoadCart()
 	}
 
 	useEffect(() => {
@@ -56,7 +60,7 @@ export default function ProductSingle({ URL, Categorie, Name, Price, id }) {
 	}, [Cart])
 
 	return (
-		<div className={styles.productWrapper} key={id}>
+		<div className={styles.productWrapper} key={Id}>
 			<img src={URL} alt="" />
 			<p>{Name}</p>
 			<div className={styles.productCategories}>

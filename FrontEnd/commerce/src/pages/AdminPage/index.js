@@ -13,6 +13,7 @@ export default function AdminPage() {
 
 	const SearchFilter = (e) => {
 		e.preventDefault();
+		// filtrar
 	}
 
 	const [allCategories, setAllCategories] = useState([]);
