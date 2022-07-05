@@ -1,7 +1,7 @@
 import { UserRepository } from './../modules/accounts/repositories/UserRepository';
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
-import { AppErros } from '../errors/AppErros';
+import { AppErrors } from '../errors/AppErrors';
 
 interface IToken{
     sub:string,
@@ -11,7 +11,7 @@ interface IToken{
 export async function authorizationUser(req:Request, res: Response, next:NextFunction) {
     const authorization=req.headers.authorization
     if(!authorization){
-        throw new AppErros('No authorization',401)
+        throw new AppErrors('No authorization',401)
     }
 
     const [,token] = authorization.split(" ")
@@ -21,14 +21,14 @@ export async function authorizationUser(req:Request, res: Response, next:NextFun
         const userRepository=new UserRepository()
         const user=await userRepository.findById(id_user)
         if(!user){
-            throw new AppErros('User not extis',400)
+            throw new AppErrors('User not extis',400)
         }
         req.user={
            id:user.id 
         }
         next()
     } catch (error) {
-        throw new AppErros(error,500)
+        throw new AppErrors(error,500)
     }
 
 }

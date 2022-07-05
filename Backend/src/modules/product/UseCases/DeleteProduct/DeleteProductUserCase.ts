@@ -1,6 +1,6 @@
 import { IProductRepository } from '../../Protocols/IProductRepository';
 import { IDeleteProductUseCase } from '../../Protocols/IDeleteProduct/IDeleteProductUseCase';
-import { AppErros } from '../../../../errors/AppErros';
+import { AppErrors } from '../../../../errors/AppErrors';
 
 
 export class DeleteProductUserCase implements IDeleteProductUseCase{
@@ -8,7 +8,7 @@ export class DeleteProductUserCase implements IDeleteProductUseCase{
     async execute(id:string):Promise<void>{
         const product = await this.productRepository.findById(id)
         if(!product.length){
-            throw new AppErros('Product not exists')
+            throw new AppErrors('Product not exists')
         }
         await this.productRepository.delete(id)
 

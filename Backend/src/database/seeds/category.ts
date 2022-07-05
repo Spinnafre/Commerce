@@ -14,8 +14,3 @@ async function createSeedCategory(uuid:string) {
     await connection.close()
 }
 export{createSeedCategory}
-// createSeedCategory()
-//     .then(_=>console.log('Category created successfully'))
-//     .catch(err=>{
-//         console.log(`Error in seed Category: `,err.message)
-//     })

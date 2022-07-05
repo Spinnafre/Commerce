@@ -1,5 +1,4 @@
 import { IProduct } from '../../Protocols/IProduct';
-import { AppErros } from '../../../../errors/AppErros';
 import { IProductRepository } from '../../Protocols/IProductRepository';
 import { IShowProductUseCase } from '../../Protocols/IShowProduct/IShowProductUseCase';
 

@@ -21,7 +21,4 @@ export class SaleProduct implements ISaleProduct{
     created_at:Date
     @UpdateDateColumn()
     updated_at:Date
-
-
-
 }

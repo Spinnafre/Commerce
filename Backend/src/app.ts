@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
-import {resolve} from 'path'
+
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 import swaggerFile from '../src/swagger.json'
@@ -7,7 +7,7 @@ import cors from "cors";
 import "reflect-metadata";
 
 import createConnection from './database'
-import { AppErros } from './errors/AppErros';
+import {  AppErrors } from './errors/AppErrors';
 import {userRouter} from './routes/userRoutes.routes'
 import { authRouter } from './routes/authRoute.routes';
 import { productRouter } from './routes/productRoutes.routes';
@@ -36,8 +36,11 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/uploads',express.static(`${uploadConfig.tmpFolder}/products`))
 
 app.use((err:Error, req:Request, res: Response,next:NextFunction) => {
-    if(err instanceof AppErros){
-        return res.status(err.statusCode).json({msg:err.msg})
+    if(err instanceof AppErrors){
+        if(!err.isOperationalError()){
+            process.exit(1)
+        }
+        return res.status(err.getStatusCode()).json({msg:err.message})
     }
     return res.status(500).json({msg:err.message})
 })

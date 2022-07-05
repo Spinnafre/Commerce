@@ -1,7 +1,7 @@
 import { ICategoryRepository } from '../../Protocols/ICategoryRepository';
 import { IShowCategoryUserCase } from '../../Protocols/ShowCategory/IShowCategoryUserCase';
 import { ICategory } from '../../Protocols/ICategories';
-import { AppErros } from '../../../../errors/AppErros';
+import { AppErrors } from '../../../../errors/AppErrors';
 
 
 export class ShowCategoryUserCase implements IShowCategoryUserCase{
@@ -9,7 +9,7 @@ export class ShowCategoryUserCase implements IShowCategoryUserCase{
     async execute(id:string): Promise<ICategory>{
         const category=await this.categoryRepository.findById(id)
         if(!category){
-            throw new AppErros('Category not exists')
+            throw new AppErrors('Category not exists')
         }
         return category
     }

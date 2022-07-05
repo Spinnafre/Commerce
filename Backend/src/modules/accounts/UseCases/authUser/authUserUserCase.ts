@@ -1,6 +1,6 @@
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
-import { AppErros } from '../../../../errors/AppErros';
+import { AppErrors } from '../../../../errors/AppErrors';
 import { IAuthUser } from "../../Protocols/authUser/IAuthUser";
 import { IAuthUserUserCase } from "../../Protocols/authUser/IAuthUserUserCase";
 import { IUser } from "../../Protocols/IUser";
@@ -11,11 +11,11 @@ export class AuthUserUserCase implements IAuthUserUserCase {
     async execute({ email, password }: IUser): Promise<IAuthUser> {
         const user = await this.userRepository.findByEmail(email)
         if (!user) {
-            throw new AppErros('Email not found')
+            throw new AppErrors('Email not found')
         }
         const confirmPassword = await compare(password, user.password)
         if (!confirmPassword) {
-            throw new AppErros('Password incorrect', 401)
+            throw new AppErrors('Password incorrect', 401)
         }
 
         const token = sign({}, '934850186e4397c2227e386e48fa40d4a8ee6302', {

@@ -1,4 +1,4 @@
-import { AppErros } from '../../../../errors/AppErros';
+import { AppErrors } from '../../../../errors/AppErrors';
 import { IDeleteSaleUseCase } from '../../Protocols/IDeleteSale/IDeleteSaleUseCase';
 import { ISalesRepository } from '../../Protocols/ISalesRepository';
 
@@ -8,7 +8,7 @@ export class DeleteSaleUserCase implements IDeleteSaleUseCase{
     async execute(id:string):Promise<void>{
         const sale= await this.saleRepository.findById(id)
         if(!sale){
-            throw new AppErros('Sale not exists')
+            throw new AppErrors('Sale not exists')
         }
         await this.saleRepository.delete(id)
 

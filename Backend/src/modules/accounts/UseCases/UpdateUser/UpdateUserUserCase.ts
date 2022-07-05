@@ -1,4 +1,4 @@
-import { AppErros } from '../../../../errors/AppErros';
+import { AppErrors } from '../../../../errors/AppErrors';
 import { hash } from 'bcrypt';
 import { IUser } from '../../Protocols/IUser';
 import { IUserRepository } from '../../Protocols/IUserRepository';
@@ -11,7 +11,7 @@ export class UpdateUserUserCase implements IUpdateUsersUserCase{
         
         const user = await this.userRepository.findById(id)
         if(!user){
-            throw new AppErros('User not exists')
+            throw new AppErrors('User not exists')
         }
 
         try {
@@ -23,7 +23,7 @@ export class UpdateUserUserCase implements IUpdateUsersUserCase{
             checkExists<string>(confirmPassword,'ConfirmPassword is not defined')
             egualOrError(password,confirmPassword,'Passwords not matches')
         } catch (error) {
-            throw new AppErros(error)
+            throw new AppErrors(error)
         }
         user.password =await hash(password,8)
 

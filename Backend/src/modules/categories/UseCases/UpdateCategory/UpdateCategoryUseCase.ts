@@ -1,5 +1,5 @@
 import { ICategoryRepository } from '../../Protocols/ICategoryRepository';
-import { AppErros } from '../../../../errors/AppErros';
+import { AppErrors } from '../../../../errors/AppErrors';
 
 interface ICategoryParams{
     id:string,
@@ -13,12 +13,12 @@ class UpdateCategoryUseCase{
         const categoryWithSameId=await this.categoryRepository.findById(id)
 
         if(!categoryWithSameId){
-            throw new AppErros('Category not exists')
+            throw new AppErrors('Category not exists')
         }
 
         const categoryWithSameName=await this.categoryRepository.findByName(category_name) 
         if(!!categoryWithSameName && category_name === categoryWithSameName.name){
-            throw new AppErros('Category already exists')
+            throw new AppErrors('Category already exists')
         }
 
         await this.categoryRepository.create({id,name:category_name})

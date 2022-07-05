@@ -1,4 +1,4 @@
-import { AppErros } from "../../../../errors/AppErros";
+import { AppErrors } from "../../../../errors/AppErrors";
 import { IDeleteUserUserCase } from "../../Protocols/DeleteUser/IDeleteUserUserCase";
 import { IUserRepository } from "../../Protocols/IUserRepository";
 
@@ -8,7 +8,7 @@ export class DeleteUserUserCase implements IDeleteUserUserCase{
     async execute(id:string): Promise<void>{
         const user=await this.userRepository.findById(id)
         if(!user){
-            throw new AppErros('User not exists')
+            throw new AppErrors('User not exists')
         }
         await this.userRepository.delete(id)
     }

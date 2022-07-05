@@ -16,8 +16,3 @@ async function createSeedUserAdmin(uuid: string) {
     await connection.close()
 }
 export { createSeedUserAdmin }
-// createSeedUserAdmin()
-//     .then(_=>console.log('User admin created successfully'))
-//     .catch(err=>{
-//         console.log(`Error in seed user admin: `,err.message)
-//     })
