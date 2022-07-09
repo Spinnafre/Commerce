@@ -2,7 +2,7 @@
   "name": "myCommerce",
   "email": "davispenha@gmail.com",
   "version": "1.0.0",
-  "description": "Projeto desenvolvido visando aplicar conceitos de banco de dados com Node.",
+  "description": "Projeto desenvolvido visando aplicar conceitos de POO com Node.",
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
